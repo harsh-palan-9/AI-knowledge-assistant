@@ -1,0 +1,211 @@
+1. User uploads document
+2. Document is chunked
+3. Chunks converted to embeddings
+4. Stored in Pinecone (per user)
+5. User asks question
+6. Question converted to embedding
+7. Relevant chunks retrieved
+8. Passed to LLM
+9. LLM generates answer
+10. Response returned to UI
+
+
+
+🚀 STEP-BY-STEP DEVELOPMENT WORKFLOW
+
+We’ll build this in logical layers (like real companies do)
+
+🧩 STEP 1 — Base System (Foundation)
+🎯 Goal:
+
+System runs without any logic
+
+🔧 What you do:
+Create project structure ✅ (done)
+Run FastAPI
+Run Streamlit
+🧠 What you learn:
+How backend & frontend connect
+Basic API flow
+📌 Flow:
+User → Streamlit → FastAPI → Response
+
+
+
+🔐 STEP 2 — Authentication (Keycloak)
+🎯 Goal:
+
+Secure your APIs
+
+🔧 What you build:
+Token generation (Keycloak)
+Token validation in FastAPI
+Protected routes
+🧠 What you learn:
+OAuth2 / JWT concepts
+Dependency Injection in FastAPI
+Multi-user system
+📌 Flow:
+User → Login (Keycloak) → Token  
+     → API Request + Token → FastAPI → Verify → Allow/Deny
+
+
+📂 STEP 3 — Document Upload
+🎯 Goal:
+
+User uploads files
+
+🔧 What you build:
+/upload API
+Save file in uploads/
+Link file to user
+🧠 What you learn:
+File handling
+API request handling
+User-based data
+📌 Flow:
+User → Upload File → FastAPI → Save → Response
+
+
+
+🧠 STEP 4 — Document Processing
+🎯 Goal:
+
+Convert document → chunks
+
+🔧 What you build:
+Load file
+Split into chunks
+🧠 What you learn:
+Why chunking is needed
+Context window limitation
+📌 Flow:
+Document → Text → Split → Chunks
+
+
+
+🔢 STEP 5 — Embeddings
+🎯 Goal:
+
+Convert text → vectors
+
+🔧 What you build:
+Embedding model
+Convert chunks
+🧠 What you learn:
+Semantic meaning
+Vector representation
+📌 Flow:
+Chunks → Embeddings (numbers)
+
+
+
+🗄️ STEP 6 — Vector Database (Pinecone)
+🎯 Goal:
+
+Store + search embeddings
+
+🔧 What you build:
+Store embeddings
+Retrieve similar chunks
+🧠 What you learn:
+Similarity search
+Vector DB usage
+📌 Flow:
+Embedding → Store → Query → Similar Results
+
+
+
+🔍 STEP 7 — Query Processing
+🎯 Goal:
+
+Handle user question
+
+🔧 What you build:
+/query API
+Convert query → embedding
+Retrieve relevant chunks
+🧠 What you learn:
+Semantic search
+Query pipeline
+📌 Flow:
+User Question → Embedding → Search → Relevant Chunks
+
+
+
+
+🤖 STEP 8 — RAG (Core of Project)
+🎯 Goal:
+
+Generate answer using context
+
+🔧 What you build:
+Combine:
+Question
+Retrieved chunks
+Send to LLM
+🧠 What you learn:
+Prompt engineering
+Hallucination control
+📌 Flow:
+Chunks + Question → LLM → Answer
+
+
+
+
+📊 STEP 9 — Structured Response
+🎯 Goal:
+
+Clean output
+
+🔧 What you build:
+Pydantic models
+Response validation
+🧠 What you learn:
+API design
+Data validation
+
+
+
+🎨 STEP 10 — Frontend Integration
+🎯 Goal:
+
+User can interact
+
+🔧 What you build:
+Login page
+Upload UI
+Chat UI
+📌 Flow:
+User → UI → API → Response → UI
+
+
+
+
+🔐 STEP 11 — Role-Based Access
+🎯 Goal:
+
+Different permissions
+
+🔧 What you build:
+Admin → upload
+User → query
+🧠 What you learn:
+RBAC
+Secure systems
+
+
+
+
+📈 STEP 12 — Logging + Testing
+🎯 Goal:
+
+Production readiness
+
+🔧 What you build:
+Logging middleware
+Unit tests
+🧠 What you learn:
+Debugging
+Monitoring
+
