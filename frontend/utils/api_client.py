@@ -8,13 +8,25 @@ def login(username, password):
 
     data = {
         "client_id": "ai-client",
-        "client_secret": "your-client-secret",
+        # "client_secret": "J59Uu3cT2na3I2nzRouQ74KO5gQFeXKq",
         "username": username,
         "password": password,
         "grant_type": "password"
     }
     response = requests.post(url, data=data)
-    return response.json()
+
+    try:
+        result = response.json()
+    except ValueError:
+        result = {
+            "error": "invalid_response",
+            "error_description": response.text,
+        }
+
+    result["status_code"] = response.status_code
+    return result
+
+
 
 
 def upload_file(file):

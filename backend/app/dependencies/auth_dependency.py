@@ -4,7 +4,7 @@ from fastapi.security import HTTPBearer
 
 security = HTTPBearer()
 
-KEYCLOAK_URL = "http://localhost:8080"
+KEYCLOAK_URL = "http://keycloak:8080"
 
 REALM = "ai-realm"
 
