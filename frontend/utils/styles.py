@@ -2,106 +2,175 @@ def load_css():
     return """
     <style>
 
-    /* ❌ HIDE DEFAULT STREAMLIT NAV */
+    /* 🔥 GLOBAL RESET */
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* 🔥 BACKGROUND */
+    .stApp {
+        background: linear-gradient(135deg, #0F172A, #020617);
+        color: #E2E8F0;
+    }
+
+    /* 🔥 REMOVE SIDEBAR */
     [data-testid="stSidebarNav"] {
         display: none;
     }
 
-    /* 🔥 GLOBAL APP BACKGROUND */
-    .stApp {
-        background-color: #0E1117;
-        color: white;
-    }
-
-    /* 🔥 SIDEBAR */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0B132B, #1C2541);
-        color: white;
-    }
-
-    /* Sidebar text */
-    section[data-testid="stSidebar"] * {
-        color: white !important;
-    }
-
-    /* 🔥 HEADER */
     header[data-testid="stHeader"] {
         background: transparent;
     }
 
-    /* 🔥 MAIN CONTAINER */
+    /* 🔥 CENTER LAYOUT */
+    section.main {
+        display: flex;
+        justify-content: center;
+    }
+
     .block-container {
-        padding-top: 2rem;
+        max-width: 900px;
+        padding-top: 3rem;
     }
 
     /* 🔥 TITLES */
-    h1, h2, h3 {
-        color: #EAEAEA;
-        font-weight: 600;
+    h1 {
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #60A5FA;
+        margin-bottom: 25px;
+    }
+
+    h2, h3 {
+        color: #E2E8F0;
+    }
+
+    /* 🔥 LABELS (FIXED) */
+    label {
+        color: #CBD5F5 !important;
+        font-size: 14px;
+        font-weight: 500;
     }
 
     /* 🔥 INPUT FIELDS */
     input, textarea {
-        background-color: #1E1E1E !important;
-        color: white !important;
-        border-radius: 8px !important;
-        border: 1px solid #333 !important;
+        background-color: #020617 !important;
+        color: #FFFFFF !important;
+        border: 1px solid #334155 !important;
+        border-radius: 10px !important;
+        padding: 12px !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: #94A3B8 !important;
     }
 
     /* 🔥 BUTTONS */
-    .stButton>button {
-        background: linear-gradient(90deg, #1E88E5, #42A5F5);
+    .stButton > button {
+        width: 100%;
+        background: linear-gradient(90deg, #2563EB, #3B82F6);
         color: white;
         border-radius: 10px;
         border: none;
-        padding: 10px 20px;
-        font-weight: 500;
-        transition: 0.3s;
-    }
-
-    .stButton>button:hover {
-        transform: scale(1.05);
-        background: linear-gradient(90deg, #1565C0, #1E88E5);
-    }
-
-    /* 🔥 CHAT MESSAGES */
-    .stChatMessage {
-        border-radius: 12px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-
-    .user-msg {
-        background: linear-gradient(90deg, #1E88E5, #42A5F5);
-        color: white;
-        border-radius: 12px;
         padding: 12px;
+        font-weight: 600;
+        transition: 0.2s ease;
     }
 
-    .ai-msg {
-        background-color: #1E1E1E;
-        color: #EAEAEA;
-        border-radius: 12px;
-        padding: 12px;
-        border: 1px solid #333;
+    .stButton > button:hover {
+        background: linear-gradient(90deg, #1D4ED8, #2563EB);
+        transform: translateY(-1px);
     }
 
     /* 🔥 FILE UPLOADER */
     .stFileUploader {
-        background-color: #1E1E1E;
-        padding: 10px;
-        border-radius: 10px;
+        background: #020617;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 15px;
     }
 
-    /* 🔥 SUCCESS / ERROR */
-    .stSuccess {
-        background-color: #1B5E20 !important;
-        color: white !important;
+    /* 🔥 ALERTS */
+    .stWarning {
+        background: #7F1D1D !important;
+        color: #FECACA !important;
+        border-radius: 10px;
+        padding: 12px;
     }
 
     .stError {
-        background-color: #B71C1C !important;
-        color: white !important;
+        background: #991B1B !important;
+        color: #FECACA !important;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .stSuccess {
+        background: #14532D !important;
+        color: #BBF7D0 !important;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    /* 🔥 CHAT MESSAGES BASE */
+    .stChatMessage {
+        background: #020617;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    /* 🔥 USER MESSAGE */
+    .stChatMessage[data-testid="stChatMessage-user"] {
+        background: #2563EB;
+    }
+
+    /* 🔥 ASSISTANT MESSAGE */
+    .stChatMessage[data-testid="stChatMessage-assistant"] {
+        background: #020617;
+    }
+
+    /* 🔥 FORCE TEXT VISIBILITY (CRITICAL FIX) */
+    .stChatMessage * {
+        color: #F1F5F9 !important;
+        opacity: 1 !important;
+    }
+
+    .stChatMessage[data-testid="stChatMessage-user"] * {
+        color: #FFFFFF !important;
+    }
+
+    .stChatMessage[data-testid="stChatMessage-assistant"] * {
+        color: #E2E8F0 !important;
+    }
+
+    .stChatMessage p,
+    .stChatMessage span,
+    .stChatMessage div {
+        color: inherit !important;
+    }
+
+    /* 🔥 CHAT INPUT */
+    textarea {
+        background-color: #020617 !important;
+        color: #FFFFFF !important;
+        font-weight: 500;
+    }
+
+    textarea::placeholder {
+        color: #94A3B8 !important;
+    }
+
+    /* 🔥 SCROLLBAR */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 10px;
     }
 
     </style>

@@ -6,7 +6,14 @@ st.markdown(load_css(), unsafe_allow_html=True)
 
 if "token" not in st.session_state or not st.session_state.token:
     st.warning("Please login to start chatting.")
-    st.stop()
+    st.switch_page("pages/1_Login.py")
+
+col1, col2 = st.columns([6, 1])
+
+with col2:
+    if st.button("Logout"):
+        st.session_state.clear()
+        st.switch_page("pages/1_Login.py")
 
 st.title("💬 Chat with your AI Assistant")
 
@@ -28,7 +35,17 @@ if query:
     with st.chat_message("assistant"):
         with st.spinner("🤖 Thinking..."):
             response = ask_question(query)
-            answer = response.get("answer", "No answer found")
-            st.write(answer)
+            
+            if "error" in response:
+                if response.get("status_code") == 401:
+                    st.error(response.get("message", "Authentication failed"))
+                    if st.button("Login Again"):
+                        st.switch_page("pages/1_Login.py")
+                else:
+                    st.error(f"Failed to get answer: {response.get('error', 'Unknown error')}")
+                answer = "Error occurred"
+            else:
+                answer = response.get("answer", "No answer found")
+                st.write(answer)
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
