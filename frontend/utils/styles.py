@@ -2,18 +2,18 @@ def load_css():
     return """
     <style>
 
-    /* 🔥 GLOBAL RESET */
+    /*  GLOBAL RESET */
     * {
         font-family: 'Inter', sans-serif;
     }
 
-    /* 🔥 BACKGROUND */
+    /*  BACKGROUND */
     .stApp {
         background: linear-gradient(135deg, #0F172A, #020617);
         color: #E2E8F0;
     }
 
-    /* 🔥 REMOVE SIDEBAR */
+    /*  REMOVE SIDEBAR */
     [data-testid="stSidebarNav"] {
         display: none;
     }
@@ -22,18 +22,32 @@ def load_css():
         background: transparent;
     }
 
-    /* 🔥 CENTER LAYOUT */
+    /*  CENTER LAYOUT */
+    /*  CENTER LAYOUT (UPDATED) */
     section.main {
         display: flex;
         justify-content: center;
+        align-items: center;   /* vertical center */
+        min-height: 100vh;     /* full screen height */
     }
 
     .block-container {
         max-width: 900px;
-        padding-top: 3rem;
+        padding-top: 0rem;     /* remove top spacing */
+        text-align: center;    /* optional */
     }
 
-    /* 🔥 TITLES */
+    /*  HOME PAGE CENTER ONLY */
+    .home-page .block-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        text-align: center;
+        padding-top: 0 !important;
+    }
+
+    /*  TITLES */
     h1 {
         text-align: center;
         font-size: 2.4rem;
@@ -46,14 +60,14 @@ def load_css():
         color: #E2E8F0;
     }
 
-    /* 🔥 LABELS (FIXED) */
+    /*  LABELS (FIXED) */
     label {
         color: #CBD5F5 !important;
         font-size: 14px;
         font-weight: 500;
     }
 
-    /* 🔥 INPUT FIELDS */
+    /*  INPUT FIELDS */
     input, textarea {
         background-color: #020617 !important;
         color: #FFFFFF !important;
@@ -66,7 +80,7 @@ def load_css():
         color: #94A3B8 !important;
     }
 
-    /* 🔥 BUTTONS */
+    /*  BUTTONS */
     .stButton > button {
         width: 100%;
         background: linear-gradient(90deg, #2563EB, #3B82F6);
@@ -83,7 +97,7 @@ def load_css():
         transform: translateY(-1px);
     }
 
-    /* 🔥 FILE UPLOADER */
+    /*  FILE UPLOADER */
     .stFileUploader {
         background: #020617;
         border: 1px solid #334155;
@@ -91,7 +105,7 @@ def load_css():
         padding: 15px;
     }
 
-    /* 🔥 ALERTS */
+    /*  ALERTS */
     .stWarning {
         background: #7F1D1D !important;
         color: #FECACA !important;
@@ -113,7 +127,7 @@ def load_css():
         padding: 12px;
     }
 
-    /* 🔥 CHAT MESSAGES BASE */
+    /*  CHAT MESSAGES BASE */
     .stChatMessage {
         background: #020617;
         border: 1px solid #334155;
@@ -122,17 +136,17 @@ def load_css():
         margin-bottom: 12px;
     }
 
-    /* 🔥 USER MESSAGE */
+    /*  USER MESSAGE */
     .stChatMessage[data-testid="stChatMessage-user"] {
         background: #2563EB;
     }
 
-    /* 🔥 ASSISTANT MESSAGE */
+    /*  ASSISTANT MESSAGE */
     .stChatMessage[data-testid="stChatMessage-assistant"] {
         background: #020617;
     }
 
-    /* 🔥 FORCE TEXT VISIBILITY (CRITICAL FIX) */
+    /*  FORCE TEXT VISIBILITY (CRITICAL FIX) */
     .stChatMessage * {
         color: #F1F5F9 !important;
         opacity: 1 !important;
@@ -152,7 +166,7 @@ def load_css():
         color: inherit !important;
     }
 
-    /* 🔥 CHAT INPUT */
+    /*  CHAT INPUT */
     textarea {
         background-color: #020617 !important;
         color: #FFFFFF !important;
@@ -163,7 +177,7 @@ def load_css():
         color: #94A3B8 !important;
     }
 
-    /* 🔥 SCROLLBAR */
+    /*  SCROLLBAR */
     ::-webkit-scrollbar {
         width: 6px;
     }

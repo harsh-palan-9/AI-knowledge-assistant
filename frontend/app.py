@@ -9,6 +9,8 @@ st.set_page_config(
 
 st.markdown(load_css(), unsafe_allow_html=True)
 
+st.markdown('<div class="home-page">', unsafe_allow_html=True)
+
 st.title("🤖 AI Knowledge Assistant")
 
 with st.sidebar:

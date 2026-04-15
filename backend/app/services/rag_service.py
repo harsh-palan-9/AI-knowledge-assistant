@@ -79,7 +79,7 @@ prompt = ChatPromptTemplate.from_template("""
 You are an AI assistant.
 
 Answer ONLY using the context below.
-If the answer is not present, say "I don't know".
+If the answer is not present, say "The question cannot be answered using the provided context."
 
 Context:
 {context}
